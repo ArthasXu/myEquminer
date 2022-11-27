@@ -7,6 +7,8 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    setWindowTitle("MyJudger");
+
     ui->lineEdit->setPlaceholderText("请在这里输入INPUT文件夹的绝对路径");
     connect(ui->pushButton_compare,&QPushButton::clicked,[&](){
         //read path of INPUT
@@ -313,7 +315,8 @@ void MainWindow::judge_process(){
     QStringList qsl;
     in_file1.open(output_vec[cur_num]->get_input1()->get_absolute_path(),ios::in);
     if(!in_file1){
-        cout<<"Error to open file!"<<endl;
+        cerr<<"Error to open file!"<<endl;
+        return;
     }
     else{
         string line;
@@ -332,7 +335,8 @@ void MainWindow::judge_process(){
     QStringList qsl2;
     in_file2.open(output_vec[cur_num]->get_input2()->get_absolute_path(),ios::in);
     if(!in_file2){
-        cout<<"Error to open file!"<<endl;
+        cerr<<"Error to open file!"<<endl;
+        return;
     }
     else{
         string line;
